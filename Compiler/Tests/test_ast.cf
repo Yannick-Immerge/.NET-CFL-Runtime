@@ -1,0 +1,12 @@
+﻿file
+{
+	prog p1()
+	{
+		a = b
+	}
+
+	struct s1
+	{
+		ab # c.flag
+	}
+}

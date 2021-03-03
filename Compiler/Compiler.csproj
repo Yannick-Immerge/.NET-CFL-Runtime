@@ -1,0 +1,36 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Specifications\mL-001.lang" />
+    <None Remove="Specifications\test-001.grammar" />
+    <None Remove="Specifications\test-001.tokens" />
+    <None Remove="Specifications\vA-001.grammar" />
+    <None Remove="Specifications\vA-001.tokens" />
+    <None Remove="Tests\test_ast.cf" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Specifications\*" CopyToOutputDirectory="PreserveNewest" LinkBase="specs">
+    </Content>
+    <Content Include="Tests\*" CopyToOutputDirectory="PreserveNewest">
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="Specifications\test-001.grammar">
+      <LinkBase>$([MSBuild]::EnsureTrailingSlash(%(LinkBase)))</LinkBase>
+    </Content>
+    <Content Update="Specifications\test-001.tokens">
+      <LinkBase>$([MSBuild]::EnsureTrailingSlash(%(LinkBase)))</LinkBase>
+    </Content>
+    <Content Update="Specifications\mL-001.lang">
+      <LinkBase>$([MSBuild]::EnsureTrailingSlash(%(LinkBase)))</LinkBase>
+    </Content>
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,5 @@
+﻿prog my_progression(arg:f.argument)
+{
+	a = "Hallo, "
+	b = a + arg
+}

@@ -1,0 +1,32 @@
+﻿# Contains list of tokens in the token format
+
+# 0. Brackets
+b-open			~ \{
+b-closed		~ \}
+p-open			~ \(
+p-closed		~ \)
+
+# 1. Operators
+math-comp		~ \+\=|\-\=|\*\=|\/\=
+bools-comp		~ \=\=|\>\=|\<\=|\=\=
+assignment		~ \=\>
+bools-binary	~ \|\||\&\&
+
+math-binary		~ [\-\+\*\/]
+equals			~ \=
+separator		~ \,
+direct-member	~ \.
+flagged-member	~ \:
+flag-of			~ \$
+flagged-with	~ \#
+
+# 2. Keywords
+scope-def		~ scope
+import			~ use
+as				~ as
+prog			~ prog
+struct			~ struct
+
+# 3. Misceallanious
+identifier		~ [a-zA-Z][_a-zA-Z0-9]*
+string			~ %STR[0-9]+%

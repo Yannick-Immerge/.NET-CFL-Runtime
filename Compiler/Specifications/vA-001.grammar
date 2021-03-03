@@ -1,0 +1,27 @@
+﻿# Contains grammar in grammar format
+
+# 0. File Structure
+*container			~ <!part-list>
+part				~ <!prog> | <!struct> | <!metadata>
+part-list			~ <!part><!part-list> | <!part>
+
+# 1. Composites
+component			~ <identifier><member><!component> | <identifier>
+component-list		~ <!component><separator><!component-list> | <!component>
+const				~ <number> | <string>
+
+# 2. Expressions
+comp-assignment		~ <!component><equals><!component>
+const-assignment	~ <!component><equals><!const>
+expression			~ <!comp-assignment> | <!const-assignment>
+expression-list		~ <!expression><!expression-list> | <!expression>
+
+# 3. Progressions
+argument			~ <identifier><flagged-member><!component-list><flagged-member><!type> | <identifier><flagged-member><!component-list>
+argument-list		~ <!argument><separator><!argument-list> | <!argument>
+prog-head			~ <prog><!identifier><p-open><!argument-list><p-close>
+prog-body			~ <b-open><!expression-list><b-close>
+prog				~<!prog-head><!prog-body>
+		
+# 4. Structures
+field-declaration	~ <identifier>
