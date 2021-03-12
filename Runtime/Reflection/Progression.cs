@@ -1,19 +1,32 @@
-﻿using System;
+﻿using Runtime.Abstraction;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Runtime.Reflection
+namespace Runtime.Foundation
 {
-    public class Progression : IMember
+    [ParsedComponent("prog")]
+    []
+    public class Progression : IComponent
     {
-        public string Name { get; }
-        public ExpressionList Body { get; }
-        public ParameterList Parameters { get; }
-        public IMember Parent { get => null; }
+        [ParsedProperty(Index = 0, Type = BlockType.Token)]
+        public string Name { get; set; }
 
-        public object GetValue()
+        [ParsedProperty(Index = 1, Type = BlockType.Node)]
+        public ExpressionList Body { get; set; }
+
+        [ParsedProperty(Index = 0, Type = BlockType.Node)]
+        public ParameterCollection Parameters { get; set; }
+
+        public PrimitiveType? ReturnType { get; }
+        public FlagCollection ReturnFlags { get; }
+        
+        public IMember Parent { get; set; }
+
+        public object GetValue(params object[] args)
         {
-            throw new NotImplementedException();
+            //Execute with given scope
+            return null;
         }
     }
 }

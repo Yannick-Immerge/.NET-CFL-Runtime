@@ -77,6 +77,7 @@ namespace Compiler.Parsers
 
             //Produce Roots recursively
             DebugStack history = new DebugStack();
+            history.Push(0);
             bool worked = CreateHistoryRecursevely(history, tree);
 
             return (Stack<int>)history;

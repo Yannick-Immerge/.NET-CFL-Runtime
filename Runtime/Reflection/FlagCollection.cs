@@ -1,20 +1,15 @@
-﻿using System;
+﻿using Compiler.Foundation.Parsing;
+using Runtime.Abstraction;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Runtime.Reflection
+namespace Runtime.Foundation
 {
-    public class FlagCollection : IEnumerable<Flag>
+    [ParsedComponent("flag-list", ConstructorParsing = true)]
+    public class FlagCollection : ParsedEnumerable<Flag>
     {
-        public int Count { get => _flags.Count; }
-
-        private List<Flag> _flags;
-
-        public IEnumerator<Flag> GetEnumerator()
-            => _flags.GetEnumerator();
-
-        IEnumerator IEnumerable.GetEnumerator()
-            => GetEnumerator();
+        public FlagCollection(AbstractSyntaxNode node, ProgramBuilder context) : base(node, context) { }
     }
 }

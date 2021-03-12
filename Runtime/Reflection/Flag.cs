@@ -1,12 +1,19 @@
-﻿using System;
+﻿using Runtime.Abstraction;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Runtime.Reflection
+namespace Runtime.Foundation
 {
+    [ParsedComponent("flag")]
     public class Flag
     {
-        public FlagDictionary Dictionary { get; }
-        public string Name { get; }
+        [ParsedProperty(Index = 2, Type = BlockType.Token)]
+        public string Name { get; set; }
+
+        [ParsedProperty(Index = 0, Type = BlockType.Token)]
+        public string DictName { get; set; }
+
+        public FlagDictionary Dictionary { get; set; }
     }
 }

@@ -1,14 +1,21 @@
-﻿using System;
+﻿using Runtime.Abstraction;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Runtime.Reflection
+namespace Runtime.Foundation
 {
-    public class Assignment
+    [ParsedComponent("assignment")]
+    public class Assignment : IExpression
     {
-        public Member Target { get; }
-        public Member Value { get; }
-        public object Constant { get; }
-        public bool IsConstant { get; }
+        [ParsedProperty(Index = 0, Type = BlockType.Node)]
+        public MemberCall Target { get; set; }
+        [ParsedProperty(Index = 1, Type = BlockType.Node)]
+        public MemberCall Value { get; set; } 
+
+        public void Execute()
+        {
+            //Write Value to target
+        }
     }
 }

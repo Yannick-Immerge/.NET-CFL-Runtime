@@ -1,16 +1,22 @@
 ﻿# Contains grammar in grammar format
 
 # Test Parts
-*container			~ <!file>
-file				~ <file><b-open><!comp-list><b-close>
+*container			~ <identifier><b-open><!comp-list><b-close>
 comp-list			~ <!comp><!comp-list> | <!comp>
 comp				~ <!struct> | <!prog>
 struct				~ <struct><identifier><b-open><!prop-list><b-close>
-prog				~ <prog><identifier><p-open><p-close><b-open><!expr-list><b-close>
+prog				~ <prog><identifier><p-open><!param-list><p-close><b-open><!expr-list><b-close>
+
+param-list			~ <!param><!param-list> | <!param>
+param				~ <identifier><flagged-member><!flag-list>
+
+flag-list			~ <!flag><!flag-list> | <!flag>
+flag				~ <identifier><direct-member><identifier>
 
 prop-list			~ <!prop><!prop-list> | <!prop>
-prop				~ <identifier><flagged-with><!member>
+prop				~ <identifier><flagged-with><!flag-list>
 expr-list			~ <!expr><!expr-list> | <!expr>
-expr				~ <!member><equals><!member>
+expr				~ <!assignment>
+assignment			~ <!member><equals><!member>
 
 member				~ <identifier><direct-member><!member> | <identifier>

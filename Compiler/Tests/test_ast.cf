@@ -1,6 +1,6 @@
-﻿file
+﻿test_container
 {
-	prog p1()
+	prog p1(a : c.flag)
 	{
 		a = b
 	}

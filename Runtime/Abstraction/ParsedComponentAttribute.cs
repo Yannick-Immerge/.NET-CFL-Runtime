@@ -5,9 +5,18 @@ using System.Text;
 
 namespace Runtime.Abstraction
 {
-    public delegate object ParseFromSyntaxTree(AbstractSyntaxNode node);
-
+    [AttributeUsage(AttributeTargets.Class | AttributeTargets.Interface)]
     public class ParsedComponentAttribute : Attribute
     {
+        public string NodeName { get; }
+        public bool IsOwnChild { get; set; }
+        public bool ConstructorParsing { get; set; }
+
+        public ParsedComponentAttribute(string name)
+        { 
+            NodeName = name;
+            IsOwnChild = false;
+            ConstructorParsing = false;
+        }
     }
 }

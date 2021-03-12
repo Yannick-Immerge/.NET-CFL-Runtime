@@ -3,12 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Runtime.Reflection
+namespace Runtime.Foundation
 {
     public class FlagDictionary : IEnumerable<Flag>, IMember
     {
         public int Count { get => _flags.Count; }
-        public IMember Parent { get => null; }
+        public IMember Parent { get; set; }
         public string Name { get; }
 
         private Dictionary<string, Flag> _flags = new Dictionary<string, Flag>();

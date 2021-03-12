@@ -1,18 +1,31 @@
-﻿using System;
+﻿using Runtime.Abstraction;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Runtime.Reflection
+namespace Runtime.Foundation
 {
-    public class Property : IMember
+    [ParsedComponent("prop")]
+    public class Property : IMember, IAssignable
     {
-        public IMember Parent { get; }
-        public string Name { get; }
-        public object Value { get; }
-        public FlagCollection Flags { get; }
+        [ParsedProperty(Index = 0, Type = BlockType.Token)]
+        public string Name { get; private set; }
 
+        [ParsedProperty(Index = 0, Type = BlockType.Node)]
+        public FlagCollection Flags { get; private set; }
+
+        public IMember Parent { get; set; }
+        public object Value { get; private set; }
+
+        public void AssignValue(object value)
+        {
+            Value = value;
+        }
 
         public object GetValue(params object[] args)
+            => Value;
+
+        public object GetValue()
             => Value;
     }
 }

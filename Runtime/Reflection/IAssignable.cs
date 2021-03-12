@@ -4,8 +4,8 @@ using System.Text;
 
 namespace Runtime.Foundation
 {
-    public interface ICommand
+    public interface IAssignable : IValuable
     {
-        public string Name { get; }
+        public void AssignValue(object value);
     }
 }

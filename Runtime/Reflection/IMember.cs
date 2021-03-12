@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Runtime.Reflection
+namespace Runtime.Foundation
 {
     /// <summary>
     /// Defines an interface for member types. Members can be any objects contained within another object.

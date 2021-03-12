@@ -37,6 +37,8 @@ namespace Compiler
             ast.CreateTree(g, tokens, ReverseHistory(history));
 
             Console.WriteLine(ast);
+            ast.BreakDownLists();
+            Console.WriteLine(ast);
         }
         private static Stack<int> ReverseHistory(Stack<int> h)
         {

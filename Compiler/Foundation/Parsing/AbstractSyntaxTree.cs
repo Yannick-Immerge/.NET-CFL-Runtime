@@ -17,16 +17,12 @@ namespace Compiler.Foundation.Parsing
 
         public void CreateTree(GrammarSchemeCollection grammar, TokenCollection tokens, Stack<int> history)
         {
-            Grammar = grammar;
-
-            if (Grammar == null)
+            if (grammar == null)
                 throw new InvalidOperationException("A grammar has to be assigned.");
 
-            Scheme = Grammar.Container;
-            Overload = 0;
-            Tokens = new Token[0];
+            //Create node
             int index = 0;
-            Children = new AbstractSyntaxNode[] { new AbstractSyntaxNode(this, Grammar.GetNamed(Entry.Blocks[0].Substring(1)), tokens, Grammar, ref index, history) };
+            CreateNode(null, grammar.Container, tokens, grammar, ref index, history);
         }
 
         public override string ToString()

@@ -5,10 +5,10 @@ using System.Text;
 namespace Runtime.Foundation
 {
     /// <summary>
-    /// The CFLRuntime simulates a machine running CFL machine code.
+    /// The CFLRuntime simulates a machine running CFL machine code. This machine provides the heap memory and specific memory for progression and structure definitions.
     /// </summary>
     public class CFLRuntime
     {
-        public void ExecuteCode()
+        public Dictionary<string, object>
     }
 }
