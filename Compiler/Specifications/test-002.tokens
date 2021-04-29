@@ -2,17 +2,18 @@
 
 # 0. Brackets
 b-open			~ \{
-b-close		~ \}
+b-close			~ \}
 p-open			~ \(
-p-close		~ \)
+p-close			~ \)
 
 # 1. Operators
 math-comp		~ \+\=|\-\=|\*\=|\/\=
-bools-comp		~ \=\=|\>\=|\<\=|\=\=
 assignment		~ \=\>
-bools-binary	~ \|\||\&\&
-
-math-binary		~ [\-\+\*\/%]
+b-bin-op		~ \|\||\&\&|\=\=|\!\=
+comparison		~ \>\=|\<\=|\>|\<
+bin-op			~ [\-\+\*\/%]
+b-un-op			~ \!
+un-op			~ \-
 equals			~ \=
 separator		~ \,
 direct-member	~ \.
@@ -27,7 +28,15 @@ as				~ as
 prog			~ prog
 struct			~ struct
 file			~ file
+true			~ true
+false			~ false
+if				~ if
+else			~ else
+while			~ while
+return			~ return
 
 # 3. Misceallanious
 identifier		~ [a-zA-Z][_a-zA-Z0-9]*
 string			~ %STR[0-9]+%
+integer			~ [0-9]+
+float			~ [0-9]+\.[0-9]+

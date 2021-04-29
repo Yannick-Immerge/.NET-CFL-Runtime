@@ -1,18 +1,32 @@
-﻿using System;
+﻿using Runtime.Abstraction;
+using Runtime.Reflection;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace Runtime.Foundation
 {
-    public class Invoke : IValuable, IExpression
+    [ParsedComponent("invoke")]
+    public class Invoke : IExpression
     {
-        public Progression Target { get; }
-        public object[] Parameters { get; }
+        [ParsedProperty(Index = 0, Type = BlockType.Node)]
+        public MemberCall Target { get; }
 
-        public void Execute()
-            => Target.GetValue(Parameters);
+        [ParsedProperty(Index = 1, Type = BlockType.Node)]
+        public StatementCollection Parameters { get; }
 
-        public object GetValue()
-            => Target.GetValue(Parameters);
+        public void Execute(Scope s)
+        {
+            Progression p = s.Runtime.GetRegisteredProgression(Target.ProduceVarIdentifier());
+
+            //Match params
+            Parameter[] ps = p.Parameters.ToArray();
+            Statement[] ss = Parameters.ToArray();
+            for (int i = 0; i < ps.Length; i++)
+                s.SetValue(ps[i].Name, ss[i].GetValue(s));
+            
+            p.GetValue(s);
+        }
     }
 }

@@ -9,9 +9,10 @@ namespace Runtime.Foundation
     /// The <see cref="Structure"/> type implements the concept of a Context Structure. It is parsed from the struct grammar element
     /// </summary>
     [ParsedComponent("struct")]
+    [RegisteredComponent(ComponentType.Structure)]
     public class Structure : IComponent
     {
-        [ParsedProperty(Index = 0, Type = BlockType.Token)]
+        [ParsedProperty(Index = 1, Type = BlockType.Token)]
         public string Name { get; set; }
 
         [ParsedProperty(Index = 0, Type = BlockType.Node)]
@@ -19,14 +20,14 @@ namespace Runtime.Foundation
 
         public IMember Parent { get; set; }
 
-        public object GetValue(params object[] args)
+        public object GetValue(Scope s)
         {
             throw new NotImplementedException();
         }
 
         public StructureObject Instantiate()
         {
-
+            return null;
         }
     }
 }

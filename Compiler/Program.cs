@@ -13,7 +13,7 @@ namespace Compiler
         static void Main(string[] args)
         {
             //Load specs
-            (FileInfo, FileInfo)? s = SpecificationsManager.GetSpecification("test-001");
+            (FileInfo, FileInfo)? s = SpecificationsManager.GetSpecification("test-002");
             FileStream ts = s.Value.Item1.OpenRead();
             FileStream gs = s.Value.Item2.OpenRead();
 

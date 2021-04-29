@@ -22,7 +22,7 @@ namespace Runtime.Foundation
             Value = value;
         }
 
-        public object GetValue(params object[] args)
+        public object GetValue(Scope s)
             => Value;
 
         public object GetValue()

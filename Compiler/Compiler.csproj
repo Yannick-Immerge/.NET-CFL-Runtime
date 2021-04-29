@@ -9,6 +9,8 @@
     <None Remove="Specifications\mL-001.lang" />
     <None Remove="Specifications\test-001.grammar" />
     <None Remove="Specifications\test-001.tokens" />
+    <None Remove="Specifications\test-002.grammar" />
+    <None Remove="Specifications\test-002.tokens" />
     <None Remove="Specifications\vA-001.grammar" />
     <None Remove="Specifications\vA-001.tokens" />
     <None Remove="Tests\test_ast.cf" />
@@ -22,6 +24,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Update="Specifications\test-002.grammar">
+      <LinkBase>$([MSBuild]::EnsureTrailingSlash(%(LinkBase)))</LinkBase>
+    </Content>
+    <Content Update="Specifications\test-002.tokens">
+      <LinkBase>$([MSBuild]::EnsureTrailingSlash(%(LinkBase)))</LinkBase>
+    </Content>
     <Content Update="Specifications\test-001.grammar">
       <LinkBase>$([MSBuild]::EnsureTrailingSlash(%(LinkBase)))</LinkBase>
     </Content>

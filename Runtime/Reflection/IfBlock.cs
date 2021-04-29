@@ -1,4 +1,5 @@
 ﻿using Runtime.Abstraction;
+using Runtime.Reflection;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -9,20 +10,21 @@ namespace Runtime.Foundation
     public class IfBlock : IExpression
     {
         [ParsedProperty(Index = 0, Type = BlockType.Node)]
-        public Condition Condition { get; }
+        public Condition Condition { get; set; }
 
         [ParsedProperty(Index = 1, Type = BlockType.Node)]
-        public ExpressionList IfBody { get; }
+        public ExpressionList IfBody { get; set; }
         
-        [ParsedProperty(Index = 2, Type = BlockType.Node)]
-        public ExpressionList ElseBody { get; }
+        [ParsedProperty(Index = 2, Type = BlockType.Node, Overload = 0, Options = BlockOptions.SpecificOverload)]
+        public ExpressionList ElseBody { get; set; }
 
-        public void Execute()
+        public void Execute(Scope s)
         {
-            if ((bool)Condition.GetValue())
-                IfBody.Execute();
+            if ((bool)Condition.GetValue(s))
+                IfBody.Execute(s);
             else
-                ElseBody.Execute();
+                if(ElseBody != null)
+                    ElseBody.Execute(s);
         }
     }
 }

@@ -11,6 +11,6 @@ namespace Runtime.Foundation
     {
         public IMember Parent { get; }
         public string Name { get; }
-        public object GetValue(params object[] args);
+        public object GetValue(Scope scope);
     }
 }

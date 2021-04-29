@@ -16,7 +16,7 @@ namespace Runtime.Foundation
         
         public IMember Parent { get => null; }
 
-        public object GetValue(params object[] args)
+        public object GetValue(Scope s)
             => throw new NotImplementedException();
     }
 }

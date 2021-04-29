@@ -1,12 +1,38 @@
 ﻿test_container
 {
-	prog p1(a : c.flag)
+	prog sum_n_squares(n : c.flag)
 	{
-		a = b
+		s = 0
+		i = 0
+		while(i <= n) {
+			s = i * i + s
+			i = i + 1
+		}
+
+		return s
 	}
 
-	struct s1
+	prog primes_below_n(n : c.flag)
 	{
-		ab # c.flag
+		s = 0
+		i = 2
+		while(i <= n)
+		{
+			p = 2
+			b = 0
+			while(p <= i / 2) {
+				if(i % p == 0) {
+					b = 1
+				}
+				p = p + 1
+			}
+			if(b == 0)
+			{
+				s = s + 1
+			}
+			i = i + 1
+		}
+
+		return s
 	}
 }

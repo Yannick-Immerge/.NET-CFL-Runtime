@@ -19,7 +19,7 @@ namespace Runtime.Foundation
         IEnumerator IEnumerable.GetEnumerator()
             => GetEnumerator();
 
-        public object GetValue(params object[] args)
+        public object GetValue(Scope s)
         {
             throw new NotImplementedException();
         }

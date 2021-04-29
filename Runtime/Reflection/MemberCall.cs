@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Runtime.Foundation
+namespace Runtime.Reflection
 {
     [ParsedComponent("member")]
     public class MemberCall

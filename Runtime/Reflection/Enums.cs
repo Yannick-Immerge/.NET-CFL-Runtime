@@ -20,6 +20,11 @@ namespace Runtime.Foundation
 
     public enum PrimitiveType
     {
-
+        Integer,
+        Byte,
+        Double,
+        Boolean,
+        Character,
+        Array
     }
 }

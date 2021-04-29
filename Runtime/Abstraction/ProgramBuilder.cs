@@ -9,10 +9,15 @@ namespace Runtime.Abstraction
 {
     public class ProgramBuilder
     {
+        public CFLRuntime Runtime { get; }
+
         private Dictionary<string, (TypeInfo, ParsedComponentAttribute)> _cache;
 
-        public ProgramBuilder()
-            => _cache = new Dictionary<string, (TypeInfo, ParsedComponentAttribute)>();
+        public ProgramBuilder(CFLRuntime rt)
+        { 
+            Runtime = rt;
+            _cache = new Dictionary<string, (TypeInfo, ParsedComponentAttribute)>(); 
+        }
 
         public Container BuildFromTree(AbstractSyntaxTree tree)
             => BuildNode(tree) as Container;
@@ -85,6 +90,13 @@ namespace Runtime.Abstraction
                     break;
                 }
             }
+
+            //Check registration
+            if (t.Item1.GetCustomAttribute(typeof(RegisteredComponentAttribute)) is RegisteredComponentAttribute rAtt)
+                if(rAtt.Type == ComponentType.Structure)
+                    Runtime.RegisterType(t.Item1.GetProperty(rAtt.NameProperty).GetValue(o) as string, o);
+                else if (rAtt.Type == ComponentType.Progression)
+                    Runtime.RegisterProgression(t.Item1.GetProperty(rAtt.NameProperty).GetValue(o) as string, o);
             return o;
         }
 

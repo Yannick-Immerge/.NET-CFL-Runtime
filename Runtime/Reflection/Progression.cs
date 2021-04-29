@@ -6,10 +6,10 @@ using System.Text;
 namespace Runtime.Foundation
 {
     [ParsedComponent("prog")]
-    []
+    [RegisteredComponent(ComponentType.Progression)]
     public class Progression : IComponent
     {
-        [ParsedProperty(Index = 0, Type = BlockType.Token)]
+        [ParsedProperty(Index = 1, Type = BlockType.Token)]
         public string Name { get; set; }
 
         [ParsedProperty(Index = 1, Type = BlockType.Node)]
@@ -23,10 +23,16 @@ namespace Runtime.Foundation
         
         public IMember Parent { get; set; }
 
-        public object GetValue(params object[] args)
+        public object GetValue(Scope s)
         {
             //Execute with given scope
+            foreach (IExpression i in Body)
+                i.Execute(s);
+
+            if (s.ContainsVariable("%RET%"))
+                return s.GetValue("%RET%", out _);
             return null;
         }
+
     }
 }

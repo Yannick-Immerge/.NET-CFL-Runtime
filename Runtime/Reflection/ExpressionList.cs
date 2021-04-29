@@ -10,15 +10,13 @@ namespace Runtime.Foundation
     [ParsedComponent("expr-list", ConstructorParsing = true)]
     public class ExpressionList : ParsedEnumerable<IExpression>, IExpression
     {
-        private List<IExpression> _expressions;
-
         public ExpressionList(AbstractSyntaxNode node, ProgramBuilder context) : base(node, context) 
         { 
         }
 
         public void Execute(Scope s)
         {
-            foreach (IExpression i in _expressions)
+            foreach (IExpression i in this)
                 i.Execute(s);
         }
     }

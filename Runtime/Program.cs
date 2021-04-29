@@ -15,7 +15,7 @@ namespace Runtime
         public static void Main(string[] args)
         {
             //Load specs
-            (FileInfo, FileInfo)? s = SpecificationsManager.GetSpecification("test-001");
+            (FileInfo, FileInfo)? s = SpecificationsManager.GetSpecification("test-002");
             FileStream ts = s.Value.Item1.OpenRead();
             FileStream gs = s.Value.Item2.OpenRead();
 
@@ -43,8 +43,17 @@ namespace Runtime
             Console.WriteLine(ast);
 
             //Parse to abstract
-            ProgramBuilder r = new ProgramBuilder();
-            Container cnt = r.BuildFromTree(ast);
+            CFLRuntime rt = new CFLRuntime();
+            ProgramBuilder builder = new ProgramBuilder(rt);
+            Container cnt = builder.BuildFromTree(ast);
+
+            //Console.WriteLine("Calculate sum of n squares with CFL [Enter integer]:");
+            //object n = Console.ReadLine().EvaluateMathExpression();
+            //Console.WriteLine(rt.Execute("sum_n_squares", ("n", n)));
+
+            Console.WriteLine("Count number of prime numbers below n with CFL [Enter integer n]:");
+            object n = Console.ReadLine().EvaluateMathExpression();
+            Console.WriteLine(rt.Execute("primes_below_n", ("n", n)));
         }
 
         private static Stack<int> ReverseHistory(Stack<int> h)

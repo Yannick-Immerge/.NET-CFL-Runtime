@@ -1,0 +1,41 @@
+﻿# Contains grammar in grammar format
+
+# Test Parts
+*container			~ <identifier><b-open><!comp-list><b-close>
+comp-list			~ <!comp><!comp-list> | <!comp>
+comp				~ <!struct> | <!prog>
+struct				~ <struct><identifier><b-open><!prop-list><b-close>
+prog				~ <prog><identifier><p-open><!param-list><p-close><b-open><!expr-list><b-close>
+
+param-list			~ <!param><!param-list> | <!param>
+param				~ <identifier><flagged-member><!flag-list>
+
+flag-list			~ <!flag><!flag-list> | <!flag>
+flag				~ <identifier><direct-member><identifier>
+
+prop-list			~ <!prop><!prop-list> | <!prop>
+prop				~ <identifier><flagged-with><!flag-list>
+expr-list			~ <!expr><!expr-list> | <!expr>
+expr				~ <!assignment> | <!if-block> | <!while-block> | <!return> | <!invoke>
+
+
+if-block			~ <if><p-open><!condition><p-close><b-open><!expr-list><b-close><else><b-open><!expr-list><b-close> | <if><p-open><!condition><p-close><b-open><!expr-list><b-close>
+while-block			~ <while><p-open><!condition><p-close><b-open><!expr-list><b-close>
+
+condition			~ <!condition-part><!b-op><!condition> | <!condition-part>
+condition-part		~ <b-un-op><!condition-part> | <p-open><!condition><p-close> | <!b-literal> | <!statement>
+
+assignment			~ <!member><equals><!statement>
+
+statement			~ <!statement-part><bin-op><!statement> | <!statement-part>
+statement-part		~ <un-op><!statement-part> | <p-open><!statement><p-close> | <!member> | <!literal>
+statement-list		~ <!statement><separator><!statement-list> | <!statement>
+
+invoke				~ <!member><p-open><!statement-list><p-close><semicolon> | <!member><p-open><p-close><semicolon>
+return	~ <return><!statement>
+
+literal				~ <integer> | <float>
+b-literal			~ <true> | <false>
+b-op				~ <b-bin-op> | <comparison>
+
+member				~ <identifier><direct-member><!member> | <identifier>
